@@ -16,10 +16,10 @@ VROOM is partnering with [UW EcoCar](http://uwecocar.com/) to create a head-up-d
 
 
 Special Thanks to:
-[EcoCar Team](http://uwecocar.com)
-Nam-ho Park: Managing Director – Forum One, Capstone Professor, Information School, UW Seattle
-Amirah Majid: PhD Candidate, Information School, UW Seattle
-Kristen Shinohara: PhD Candidate, Information School, UW Seattle
+* [EcoCar Team](http://uwecocar.com)
+* Nam-ho Park: Managing Director – Forum One, Capstone Professor, Information School, UW Seattle
+* Amirah Majid: PhD Candidate, Information School, UW Seattle
+* Kristen Shinohara: PhD Candidate, Information School, UW Seattle
 
 
 //last updated : 2.24.15
