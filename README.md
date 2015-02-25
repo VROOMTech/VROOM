@@ -1,12 +1,25 @@
-huv
-===
+VROOM
+iSchool Capstone
+Nov 2014 - June 2015
 
-Heads Up Vision
+Contributors:
+Philip Rudio 
+Danny Gonzalez
+Marissa Ho
+David Philips
+Stephen Ramirez (ramirs.github.io)
 
 
-Capstone 2015 Informatics
 
-Heads up display (HUD) for vehicles to display valuable information onto the user windsheild. This reprository will provide
-software necessary to display the information onto the windsheild of user vehicle.
 
-* Development environment: MEAN Stack and/or Andriod/iOS (Java/Objective C)
+VROOM is partnering with UW EcoCar (http://uwecocar.com/) to create a head-up-display (H.U.D.) user interface on the car windshield, which will increase the visibility of energy consumption and car diagnostics to drivers while promoting a safe-driving experience. 
+
+
+Special Thanks to:
+EcoCar Team (http://uwecocar.com)
+Nam-ho Park: Managing Director – Forum One, Capstone Professor, Information School, UW Seattle
+Amirah Majid: PhD Candidate, Information School, UW Seattle
+Kristen Shinohara: PhD Candidate, Information School, UW Seattle
+
+
+//last updated : 2.24.15
