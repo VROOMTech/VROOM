@@ -1,6 +1,6 @@
 #VROOM
 ###iSchool Capstone
-####Nov 2014 - June 2015
+(Nov 2014 - June 2015)
 
 ####Contributors:
 * Philip Rudio 
