@@ -1,13 +1,13 @@
-VROOM
-iSchool Capstone
-Nov 2014 - June 2015
+#VROOM
+###iSchool Capstone
+####Nov 2014 - June 2015
 
-Contributors:
-Philip Rudio 
-Danny Gonzalez
-Marissa Ho
-David Philips
-Stephen Ramirez (ramirs.github.io)
+####Contributors:
+* Philip Rudio 
+* Danny Gonzalez
+* Marissa Ho
+* David Philips
+* [Stephen Ramirez](ramirs.github.io)
 
 
 
