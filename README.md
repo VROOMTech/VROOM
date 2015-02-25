@@ -7,7 +7,7 @@
 * Danny Gonzalez
 * Marissa Ho
 * David Philips
-* [Stephen Ramirez](ramirs.github.io)
+* [Stephen Ramirez](http://ramirs.github.io)
 
 
 
