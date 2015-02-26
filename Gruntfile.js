@@ -7,6 +7,13 @@ module.exports = function(grunt) {
     nodeunit: {
       files: ['test/**/*_test.js'],
     },
+
+    karma: {
+        unit: {
+            configFile:'./test/karma.conf.js'
+        }
+    },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -21,6 +28,7 @@ module.exports = function(grunt) {
         src: ['test/**/*.js']
       },
     },
+
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -41,8 +49,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-karma');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit']);
-
+  grunt.registerTask('default', ['karma']);
 };
