@@ -4,7 +4,7 @@
 
 ####Contributors:
 * Philip Rudio 
-* [Danny Gonzalez](www.linkedin.com/in/jdannygonzalez/)
+* [Danny Gonzalez](http://www.linkedin.com/in/jdannygonzalez/)
 * Marissa Ho
 * David Philips
 * [Stephen Ramirez](http://ramirs.github.io)
