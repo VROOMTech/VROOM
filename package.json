@@ -2,18 +2,18 @@
   "name": "VROOM",
   "description": "The best project ever.",
   "version": "0.0.1",
-  "homepage": "https://github.com/TheThirdDave/VROOM",
+  "homepage": "https://github.com/VROOMTech/VROOM",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TheThirdDave/VROOM.git"
+    "url": "https://github.com/VROOMTech/VROOM.git"
   },
   "bugs": {
-    "url": "https://github.com/TheThirdDave/VROOM/issues"
+    "url": "https://github.com/VROOMTech/VROOM/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/TheThirdDave/huv/blob/master/LICENSE-MIT"
+      "url": "https://github.com/VROOMTech/huv/blob/master/LICENSE-MIT"
     }
   ],
   "main": "node_modules/huv",
