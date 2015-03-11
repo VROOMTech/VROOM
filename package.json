@@ -38,6 +38,7 @@
     "karma-phantomjs-launcher": "~0.1.2",
     "karma": "~0.10.9",
     "karma-story-reporter": "~0.2.2",
+    "jasmine-node": "*",
     "grunt-karma": "~0.6.2",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-nodeunit": "~0.2.0",
