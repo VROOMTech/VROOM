@@ -4,11 +4,15 @@
 
 ####Contributors:
 * Philip Rudio 
-* Danny Gonzalez
+* [Danny Gonzalez](http://www.linkedin.com/in/jdannygonzalez/)
 * Marissa Ho
 * David Philips
 * [Stephen Ramirez](http://ramirs.github.io)
 
+####Software Setup
+* Install Nodejs
+* Install NPM
+* Install Grunt Cli
 
 
 ####Problem Statement
