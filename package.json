@@ -21,6 +21,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
+    "start": "node server.js",
     "test": "grunt nodeunit"
   },
   "dependencies": {
