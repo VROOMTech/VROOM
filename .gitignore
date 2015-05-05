@@ -39,6 +39,7 @@ Thumbs.db
 # backup files
 ######################
 *~
+backup-*
 
 # Dependency directory
 /node_modules
