@@ -4,6 +4,7 @@ var stylus      = require('stylus');
 var nib         = require('nib');
 var bodyParser  = require('body-parser');
 var app         = express();
+var routes      = require('./routes');
 
 ///////////// port /////////////////
 var port = process.env.PORT || 8080;
@@ -20,8 +21,10 @@ function compile (str, path) {
         .set('filename', path)
         .use(nib());
 }
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+
 app.use(stylus.middleware(
     {
         src: __dirname + '/public',
@@ -34,8 +37,18 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res) {
     //res.send('<h1>VROOM VROOM!</h1>');
     res.render('index', 
-        {title: 'VROOM'});
+        {title: 'Test page Vroom'});
+    
 });
+
+//app.get('/', routes.index);
+app.get('/partials/:name', routes.partials);
+
+app.get('/test', function(req, res) {
+    res.send('<h1>VROOM VRM!</h1>');
+});
+
+//app.get('*', routes.index);
 
 var server = app.listen(port, function () {
     var host = server.address().address;
