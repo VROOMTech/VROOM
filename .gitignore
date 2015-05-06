@@ -55,3 +55,7 @@ backup-*
 # bower components
 ######################
 public/bower_components
+
+# images
+######################
+*.png
