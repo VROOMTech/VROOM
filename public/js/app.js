@@ -1,5 +1,5 @@
 'use strict';
-//(function() {
+(function() {
 
     var app = angular.module("vroomApp", ["ngRoute"]);
 
@@ -9,9 +9,9 @@
                 templateUrl: 'partials/loading',
                 controller: MainController
             })
-            .when("/main", {
-                templateUrl: "main.html",
-                controller: "MainController"
+            .when("/fuel-gauge", {
+                templateUrl: 'partials/fuel-gauge',
+                controller: FuelGaugeController
             })
             .when("/test", {
                 templateUrl: "test.html",
@@ -20,4 +20,4 @@
             .otherwise({redirectTo: "/"}); 
     });
 
-//}());
+}());
