@@ -6,7 +6,7 @@
 * Philip Rudio 
 * [Danny Gonzalez](http://www.linkedin.com/in/jdannygonzalez/)
 * Marissa Ho
-* David Philips
+* David Phillips
 * [Stephen Ramirez](http://ramirs.github.io)
 
 ####Software Setup
