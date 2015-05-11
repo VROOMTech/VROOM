@@ -13,9 +13,17 @@
                 templateUrl: 'partials/fuel-gauge',
                 controller: FuelGaugeController
             })
-            .when("/test", {
-                templateUrl: "test.html",
-                controller: "TestController"
+            .when("/confirm-location", {
+                templateUrl: 'partials/confirm-location',
+                controller: ConfirmLocationController
+            })
+            .when("/station-list", {
+                templateUrl: 'partials/station-list',
+                controller: StationListController
+            })
+            .when("/end", {
+                templateUrl: 'partials/end',
+                controller: EndController
             })
             .otherwise({redirectTo: "/"}); 
     });
