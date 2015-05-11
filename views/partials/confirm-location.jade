@@ -1,0 +1,20 @@
+div(class='vroom-container')
+    div(class='header')
+        img(src='images/Fuel-256.png', class='fuel-icon')
+    
+    div(class='location-module')
+        div(class='status-container')
+            img(src='images/location-pin-white.png')
+
+    h1 Are You Here?
+    h2 University of Washington
+
+    div(class='speech-option')
+        "yes" | "no"
+    div(class='testing')
+        //h1 Test
+        //button(ng-click='burnRubber()') Burn Rubber!
+        //button(ng-click='refuel()') Refuel
+        //button(ng-click='turnCarOff()') Stop Driving
+        h1 {{receivedWords}}
+        button(ng-click='listen()') Speak
