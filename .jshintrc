@@ -11,5 +11,9 @@
   "boss": true,
   "eqnull": true,
   "node": true,
-  "predef": ["angular", "MainController"]
+  "predef": ["document"],
+  "globals": {
+    "angular"   : false,
+    "vroomApp"  : false
+  }
 }
