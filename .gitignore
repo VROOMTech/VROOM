@@ -59,3 +59,8 @@ public/bower_components
 # images
 ######################
 *.png
+
+# SSL certificate
+######################
+*.pem
+*.csr
