@@ -2,9 +2,9 @@ var app = angular.module('vroomApp');
 
 var FuelGaugeController = function($scope, $location) {
 
-    // test gauge value
+    // gauge value
     var initial_value = 60;
-    var firstGauge = loadCarGauge("test-gauge", initial_value, null);
+    var firstGauge = loadCarGauge("test-gauge", initial_value, null); // jshint ignore:line
     firstGauge.updateGauge(initial_value);
     var recommendedRefuelValue = firstGauge.getRecommendedRefuelValue();
 
@@ -78,9 +78,26 @@ var FuelGaugeController = function($scope, $location) {
         }
     };
 
-    var keywords = {"gas": true, "fuel": true, "where": true, "gage": true, "gauge": true, "near": true, "nearest": true, "find": true, "around": true, "locate": true, "refuel": true, "pump": true, "refill": true, "tank": true, "jewel": true, "station": true, "bump": true, "you'll": true};
+    var keywords = {"gas": true, 
+        "fuel": true, 
+        "where": true, 
+        "gage": true, 
+        "gauge": true, 
+        "near": true, 
+        "nearest": true, 
+        "find": true, 
+        "around": true, 
+        "locate": true, 
+        "refuel": true, 
+        "pump": true, 
+        "refill": true, 
+        "tank": true, 
+        "jewel": true, 
+        "station": true, 
+        "bump": true, 
+        "you'll": true};
 
-    var recognizer = new webkitSpeechRecognition();
+    var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
     recognizer.continuous = true;
     recognizer.interimResults = true;
     recognizer.lang = "en";
@@ -90,7 +107,6 @@ var FuelGaugeController = function($scope, $location) {
             var words = e.results[lastResultIndex][0].transcript.split(" ");
             $scope.receivedWords = words[words.length - 1];
             console.log('words is: ' + words);
-            //words.forEach(function(element, index, array) {
             words.forEach(function(element) {
                 console.log(element + ' in keywords is ' + keywords[element]);
                 if(keywords[element]) {
@@ -110,7 +126,6 @@ var FuelGaugeController = function($scope, $location) {
         console.log('listening');
         recognizer.start();
     };
-
 };
 
 app.controller("FuelGaugeController", FuelGaugeController);

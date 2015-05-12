@@ -2,7 +2,10 @@ var app = angular.module('vroomApp');
 
 var ConfirmLocationController = function($scope, $location) {
 
-    var keywords = {"yes": true, "yeah": true, "sure": true, "yup": true};
+    var keywords = {"yes": true, 
+        "yeah": true, 
+        "sure": true, 
+        "yup": true};
 
     var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
     recognizer.continuous = true;
@@ -14,7 +17,6 @@ var ConfirmLocationController = function($scope, $location) {
             var words = e.results[lastResultIndex][0].transcript.split(" ");
             $scope.receivedWords = words[words.length - 1];
             console.log('words is: ' + words);
-            //words.forEach(function(element, index, array) {
             words.forEach(function(element) {
                 console.log(element + ' in keywords is ' + keywords[element]);
                 if(keywords[element]) {
@@ -34,7 +36,6 @@ var ConfirmLocationController = function($scope, $location) {
         console.log('listening');
         recognizer.start();
     };
-
 };
 
 app.controller("ConfirmLocationController", ConfirmLocationController);

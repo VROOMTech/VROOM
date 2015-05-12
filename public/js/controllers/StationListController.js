@@ -2,7 +2,14 @@ var app = angular.module('vroomApp');
 
 var StationListController = function($scope, $location) {
 
-    var keywords = {"chevron": true, "shell": true, "cheap": true, "cheapest": true, "close": true, "closest": true, "near": true, "nearest": true};
+    var keywords = {"chevron": true, 
+        "shell": true, 
+        "cheap": true, 
+        "cheapest": true, 
+        "close": true, 
+        "closest": true, 
+        "near": true, 
+        "nearest": true};
 
     var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
     recognizer.continuous = true;
@@ -14,7 +21,6 @@ var StationListController = function($scope, $location) {
             var words = e.results[lastResultIndex][0].transcript.split(" ");
             $scope.receivedWords = words[words.length - 1];
             console.log('words is: ' + words);
-            //words.forEach(function(element, index, array) {
             words.forEach(function(element) {
                 console.log(element + ' in keywords is ' + keywords[element]);
                 if(keywords[element]) {
@@ -34,7 +40,6 @@ var StationListController = function($scope, $location) {
         console.log('listening');
         recognizer.start();
     };
-
 };
 
 app.controller("StationListController", StationListController);

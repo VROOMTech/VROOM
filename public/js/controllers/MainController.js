@@ -19,12 +19,10 @@ var MainController = function($scope, $interval, $location) {
             $scope.countdown = null;
         }
         $location.path("/confirm-location");
-        //$location.path("/fuel-gauge");
     };
 
     $scope.countdown = 5;
     startCountdown();
-
 };
 
 app.controller("MainController", MainController);
