@@ -21,10 +21,6 @@
                 templateUrl: 'partials/station-list',
                 controller: StationListController
             })
-            .when("/end", {
-                templateUrl: 'partials/end',
-                controller: EndController
-            })
             .otherwise({redirectTo: "/"}); 
     });
 
