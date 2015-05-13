@@ -25,5 +25,7 @@ VROOM is partnering with [UW EcoCar](http://uwecocar.com/) to create a head-up-d
 * Amirah Majid: PhD Candidate, Information School, UW Seattle
 * Kristen Shinohara: PhD Candidate, Information School, UW Seattle
 
+####Testing Requirements
+Due to the Web Speech API requiring permissions each time to use it, when run through HTTP, the current application is run through HTTPS. Certs must be created locally to be able to test this application. Instructions to come.
 
 last updated : 2.24.15
