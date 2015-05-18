@@ -43,8 +43,6 @@ function loadCarGauge(elementClass, value, config) {
 
     var path = "M " + leftPointX + " " + leftPointY + " L " + bottomPointX + " " + bottomPointY + " L " + rightPointX + " " + rightPointY + " L " + leftPointX + " " + leftPointY; 
 
-    //var path = "M " + leftPointX + " " + leftPointY + " L " + bottomPointX + " " + bottomPointY + " L " + rightPointX + " " + rightPointY + " Z";
-    
     // create canvas
     var svg = d3.select("." + elementClass)
         .append('svg')
@@ -137,7 +135,5 @@ function loadCarGauge(elementClass, value, config) {
             //return (1 - recommenderHeight / (height - padding * 2)) * 100; 
             return 25;
         }
-
     };
-    
 }

@@ -28,7 +28,6 @@ var FuelGaugeController = function($scope, $location) {
                 console.log("need to refuel noww!"); 
                 document.getElementsByClassName("status")[0].src = "images/alert-icon.png";
                 var h1 = document.createElement("h1");
-                h1.appendChild(document.createTextNode("You Should Refuel"));
                 document.getElementsByClassName("status-container")[0].appendChild(h1);
             }
         }
@@ -43,7 +42,6 @@ var FuelGaugeController = function($scope, $location) {
             firstGauge.updateGauge(value);
             if(shouldRefuel && value > recommendedRefuelValue) {
                 shouldRefuel = false;
-                console.log("you're good now!"); 
                 document.getElementsByClassName("status")[0].src = "images/check-symbol.png";
             }
         }
