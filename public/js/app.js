@@ -21,6 +21,10 @@
                 templateUrl: 'partials/station-list',
                 controller: StationListController
             })
+            .when("/select-fuel-type", {
+                templateUrl: 'partials/select-fuel-type',
+                controller: SelectFuelTypeController
+            })
             .otherwise({redirectTo: "/"}); 
     });
 
