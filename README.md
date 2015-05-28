@@ -10,10 +10,14 @@
 * [Stephen Ramirez](http://ramirs.github.io)
 
 ####Software Setup
-* Install Nodejs
+* Install Node
 * Install NPM
 * Install Grunt Cli
+* Install Bower
+* Run 'npm install'
 
+####Start Application
+* Run npm start
 
 ####Problem Statement
 VROOM is partnering with [UW EcoCar](http://uwecocar.com/) to create a head-up-display (H.U.D.) user interface on the car windshield, which will increase the visibility of energy consumption and car diagnostics to drivers while promoting a safe-driving experience. 
