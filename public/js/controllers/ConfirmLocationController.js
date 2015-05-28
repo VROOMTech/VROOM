@@ -23,7 +23,7 @@ var ConfirmLocationController = function($scope, $location) {
                     console.log(element + " was said"); 
                     // route to gas station list
                     $scope.$apply(function() {
-                        $location.path("/station-list");   
+                        $location.path("/fuel-gauge");   
                         recognizer.stop();
                     });
 
