@@ -1,16 +1,19 @@
 div(class='vroom-container')
-    div(class='header')
-        img(src='images/Fuel-256.png', class='fuel-icon')
-    
     div(class='location-module')
         div(class='status-container')
-            img(src='images/location-pin-white.png')
+            img(src='images/location-pin-white.png', class='location-pin')
 
-    h1 Are You Here?
-    h2 University of Washington
+    div(class='prompt-container')
+        span(class='prompt-question') Are You Here?
+        br
+        span(class='prompt-location') University of Washington
+        br
+        span(class='input-options')"yes" | "no"
 
-    div(class='speech-option')
-        "yes" | "no"
+    div(class='footer')
+        img(src='images/mic-white.png', class='mic-icon')
+        h3(class='user-input')
+
     div(class='testing')
         h1 {{receivedWords}}
         button(ng-click='listen()') Speak
