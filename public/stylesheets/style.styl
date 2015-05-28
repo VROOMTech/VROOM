@@ -4,9 +4,21 @@ global-reset()
 
 main-color = #2ecc71
 background-color = #3f3f3f
+custom-font = neutra
+
+// custom font
+@font-face
+    font-family neutra
+    src url(../fonts/neutra.eof)
+    src url(../fonts/neutra.eot?#iefix) format(embedded-opentype),
+        url(../fonts/neutra.woff) format(woff),
+        url(../fonts/neutra.ttf) format(truetype),
+        url(../fonts/neutra.svg#webfont) format(svg)
+    font-weight normal
+    font-style normal
 
 body
-    font-family Helvetica, sans-serif
+    font-family custom-font, Helvetica, sans-serif
     background-color background-color
     color #ffffff
     text-align center
@@ -71,3 +83,8 @@ body
 
 .testing
     margin-top 40px
+
+.select-fuel-header
+    font-size 40px
+    margin-top 20px
+    text-align middle
