@@ -2,7 +2,7 @@ doctype
 html(ng-app='vroomApp')
     head
         title #{title}
-        link(rel='stylesheet', href='/fonts/stylesheet.css')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
         link(rel='stylesheet', href='/stylesheets/style.css')
         script(src='bower_components/angular/angular.min.js')
         script(src='bower_components/angular-route/angular-route.min.js')
@@ -14,5 +14,7 @@ html(ng-app='vroomApp')
         script(src='js/controllers/StationListController.js')
         script(src='js/controllers/SelectFuelTypeController.js')
         script(src='js/modules/car-gauge.js')
+        script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?libraries=places')  
+        script(src='js/modules/myGasBuddy.js')
     body
         block body
