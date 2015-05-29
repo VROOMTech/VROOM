@@ -1,5 +1,5 @@
 (function() {
-    var myGasBuddy = function() {
+    var myGasFeed = function($http) {
 
         var getNearbyGasStations = function(lat, lng, dist, fuelType, sortBy) {
             return $http.get("https://api.mygasfeed.com/stations/radius/" + lat + "/" + lng + "/" + dist + "/" + fuelType + "/" + sortBy + "/apikey.json")
@@ -9,7 +9,7 @@
         };
 
         var getGasStationDetails = function(stationId) {
-            return $http.get("https://api.mygasfeed.com/stations/details/" + stationId + "/apikey.json")
+            return $http.get("http://api.mygasfeed.com/stations/details/" + stationId + "/apikey.json")
 
             .then(function(response) {
                 return response.data;
@@ -21,4 +21,7 @@
             getGasStationDetails: getGasStationDetails
         };
     };
+
+    var module = angular.module("vroomApp");
+    module.factory("myGasFeed", myGasFeed);
 }());
