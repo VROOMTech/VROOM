@@ -1,6 +1,6 @@
 var app = angular.module('vroomApp');
 
-var StationListController = function($scope, $location, myGasFeed) {
+var StationListController = function($scope, $location, myGasFeed, testGasFeed) {
 
     var keywords = {"chevron": true, 
         "shell": true, 
@@ -96,8 +96,31 @@ var StationListController = function($scope, $location, myGasFeed) {
         $scope.error = "Could not fetch gas stations";
     };
 
-    myGasFeed.getNearbyGasStations(latitude, longitude, 3, 'reg', 'price')
-        .then(onGetNearbyGasStationsComplete, onError);
+    //myGasFeed.getNearbyGasStations(latitude, longitude, 3, 'reg', 'price')
+    //    .then(onGetNearbyGasStationsComplete, onError);
+    
+    var gasStationDataPrice = testGasFeed.getNearbyGasStationsByPrice();
+    var gasStationDataDistance = testGasFeed.getNearbyGasStationsByDistance();
+    //gasStationData.stations.forEach(function(station) {
+    //    console.log(station);
+    //});
+    //
+
+    $scope.cheapestStation = gasStationDataPrice.stations[0].station;
+    $scope.cheapestPrice = gasStationDataPrice.stations[0].reg_price;
+    $scope.cheapestDistance = gasStationDataPrice.stations[0].distance;
+    $scope.closestStation = gasStationDataDistance.stations[2].station;
+    $scope.closestPrice = gasStationDataDistance.stations[2].reg_price;
+    $scope.closestDistance = gasStationDataDistance.stations[2].distance;
+
+    console.log(gasStationDataPrice.stations[0].station);
+    console.log(gasStationDataPrice.stations[0].reg_price);
+    console.log(gasStationDataPrice.stations[0].distance);
+    console.log(gasStationDataDistance.stations[2].station);
+    console.log(gasStationDataDistance.stations[2].reg_price);
+    console.log(gasStationDataDistance.stations[2].distance);
+
+
 
 };
 
