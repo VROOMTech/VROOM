@@ -2,7 +2,7 @@
 
 global-reset()
 
-main-color = #2ecc71
+main-color = #96bf70
 background-color = #3f3f3f
 custom-font = neutra
 
@@ -80,8 +80,14 @@ body
     margin-top 10%
     vertical-align middle
 
+.fuel-level-title
+    font-size 36px
+
 .status
-    width 50%
+    width 30%
+
+.status-message
+    font-size 24px
 
 .left
     width 40%
@@ -122,6 +128,7 @@ body
 .fuel-option > span 
     height 100%
     vertical-align middle
+    font-size 36px
 
 .footer
     text-align left
@@ -129,3 +136,14 @@ body
 .mic-icon
     width 40px
     margin 20px
+
+.done
+    text-align right
+
+.fade
+    -webkit-transition opacity 10s
+    transition opacity 10s
+    opacity 0
+
+.default
+    opacity 1
