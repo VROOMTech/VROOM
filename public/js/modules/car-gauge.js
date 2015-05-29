@@ -67,13 +67,13 @@ function loadCarGauge(elementClass, value, config) {
         .append("polygon")
         .attr("points", leftPointX + "," + rightPointY + " " + bottomPointX + "," + bottomPointY + " " + rightPointX + "," + rightPointY);
 
-    grad.append("stop")
-    .attr("offset", "12%")
-    .style("stop-color", "red");
+    //grad.append("stop")
+    //.attr("offset", "12%")
+    //.style("stop-color", "red");
 
-    grad.append("stop")
-        .attr("offset", "80%")
-        .style("stop-color", "yellow");
+    //grad.append("stop")
+    //    .attr("offset", "80%")
+    //    .style("stop-color", "yellow");
 
     grad.append("stop")
         .attr("offset", "100%")

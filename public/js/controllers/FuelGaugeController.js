@@ -1,6 +1,6 @@
 var app = angular.module('vroomApp');
 
-var FuelGaugeController = function($scope, $location) {
+var FuelGaugeController = function($scope, $location, $timeout) {
 
     // gauge value
     var initial_value = 60;
@@ -18,7 +18,7 @@ var FuelGaugeController = function($scope, $location) {
             clearInterval(timer);
         } else if(value <= recommendedRefuelValue) {
             clearInterval(timer); 
-            timer = setInterval(drain, 25000);
+            timer = setInterval(drain, 250);
         } else {
             value = firstGauge.getGaugeValue();
             value = value - 1;
@@ -26,8 +26,13 @@ var FuelGaugeController = function($scope, $location) {
             if(!shouldRefuel && value <= recommendedRefuelValue) {
                 shouldRefuel = true;
                 console.log("need to refuel noww!"); 
-                document.getElementsByClassName("status")[0].src = "images/alert-icon.png";
+                var status = document.getElementsByClassName("status")[0];
+                //document.getElementsByClassName("status")[0].src = "images/alert-icon.png";
+                status.src = "images/alert-icon.png";
+                $scope.fadeIcon();
                 var h1 = document.createElement("h1");
+                var text = document.createTextNode("BEST TIME TO REFUEL");
+                h1.appendChild(text);
                 document.getElementsByClassName("status-container")[0].appendChild(h1);
             }
         }
@@ -54,7 +59,7 @@ var FuelGaugeController = function($scope, $location) {
             consuming = null;
         }
         consuming = true;
-        timer = setInterval(drain, 1000);
+        timer = setInterval(drain, 50);
     };
 
     $scope.burnRubber();
@@ -123,6 +128,13 @@ var FuelGaugeController = function($scope, $location) {
     $scope.listen = function() {
         console.log('listening');
         recognizer.start();
+    };
+
+    $scope.fadeIcon = function() {
+        $scope.startFade = true;
+        $timeout(function() {
+            $scope.hidden = true;   
+        }, 1000); 
     };
 };
 
