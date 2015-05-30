@@ -11,6 +11,18 @@ var StationListController = function($scope, $location, myGasFeed, testGasFeed) 
         "near": true, 
         "nearest": true};
 
+
+    var chevronKey = {"chevron": true,
+        "Chevron": true,
+        "cheap": true,
+        "cheapest": true};
+
+    var shellKey = {"shell": true,
+        "close": true,
+        "closest": true,
+        "near": true,
+        "nearest": true};
+
     var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
     recognizer.continuous = true;
     recognizer.interimResults = true;
@@ -22,14 +34,30 @@ var StationListController = function($scope, $location, myGasFeed, testGasFeed) 
             $scope.receivedWords = words[words.length - 1];
             console.log('words is: ' + words);
             words.forEach(function(element) {
-                console.log(element + ' in keywords is ' + keywords[element]);
-                if(keywords[element]) {
-                    console.log(element + " was said"); 
+                var ans = element.toLowerCase();
+                console.log(ans + ' in keywords is ' + keywords[element]);
+                if(keywords[ans]) {
+                    console.log(ans + " was said"); 
+                    
+                    if(chevronKey[ans]) {
+                        document.getElementsByClassName("chevron-image")[0].src = "images/check-symbol_green.png"; 
+                    } else {
+                        document.getElementsByClassName("shell-image")[0].src = "images/check-symbol_green.png";
+                    }
                     // route to gas station list
-                    $scope.$apply(function() {
-                        $location.path("/station-list");   
-                        recognizer.stop();
-                    });
+                    //
+                    
+                    setTimeout(function() {
+                        $scope.$apply(function() {
+                            recognizer.stop();
+                            $location.path("/fuel-gauge-update");     
+                        }); 
+                    }, 2000);
+
+                    //$scope.$apply(function() {
+                    //    $location.path("/fuel-gauge");   
+                    //    recognizer.stop();
+                    //});
 
                 }
             });
