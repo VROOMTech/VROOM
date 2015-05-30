@@ -36,10 +36,16 @@ function loadCarGauge(elementClass, value, config) {
     // height
     var recommenderHeight = (height - padding * 2) * 0.75 + padding;
     // x-axis points
-    var recommenderBarLeft = width * 0.2;
-    var recommenderBarRight = width - width * 0.2;
+    var recommenderBarLeft = width * 0.1;
+    var recommenderBarRight = width - width * 0.1;
+
+    var emptyBarLeft = width * 0.35;
+    var emptyBarRight = width - width * 0.35;
 
     var recommenderPath = "M " + recommenderBarLeft + " " + recommenderHeight + " L " + recommenderBarRight + " " + recommenderHeight;
+
+    var emptyLinePath = "M " + emptyBarLeft + " " + bottomPointY + " L " + emptyBarRight + " " + bottomPointY;
+
 
     var path = "M " + leftPointX + " " + leftPointY + " L " + bottomPointX + " " + bottomPointY + " L " + rightPointX + " " + rightPointY + " L " + leftPointX + " " + leftPointY; 
 
@@ -77,7 +83,7 @@ function loadCarGauge(elementClass, value, config) {
 
     grad.append("stop")
         .attr("offset", "100%")
-        .style("stop-color", "green");
+        .style("stop-color", "#006600");
 
     // add gauge outline
     svg.append('svg:path')
@@ -96,9 +102,84 @@ function loadCarGauge(elementClass, value, config) {
     // add recommender bar
     var recommender = svg.append('svg:path')
         .attr("d", recommenderPath)
-        .attr("stroke", "white")
+        .attr("stroke", "#006600")
         .attr("stroke-width", "3px");
+
+    // add empty line
+    var emptyLine = svg.append('svg:path')
+        .attr("d", emptyLinePath)
+        .attr("stroke", "#006600")
+        .attr("stroke-width", "3px");
+
+    // add empty line text
+    //var emptyLineText = svg.selectAll("text")
+    //                        .data(emptyLine)
+    //                        .enter()
+    //                        .append("text");
+
+    //var eTextLabel = emptyLineText
+    //                            .attr("x", emptyBarLeft - 15)
+    //                            .attr("y", bottomPointY + 5)
+    //                            .text("E")
+                                //.attr("font-family", "neutra")
+    //                            .attr("font-size", "20px")
+    //                            .attr("fill", "white");
    
+    //var eTextLabel = emptyLineText
+    //                            .attr("x", emptyBarLeft - 15)
+    //                            .attr("y", bottomPointY + 5)
+    //                            .text("E")
+                                //.attr("font-family", "neutra")
+    //                            .attr("font-size", "20px")
+    //                            .attr("fill", "white");
+    
+    var emptyLineText = svg.selectAll("text")
+                            .data(emptyLine)
+                            .enter();
+
+    emptyLineText.append("text")
+                    .attr("x", emptyBarLeft - 15)
+                    .attr("y", bottomPointY + 5)
+                    .text("E")
+                                //.attr("font-family", "neutra")
+                    .attr("font-size", "20px")
+                    .attr("fill", "#006600");
+
+    //emptyLineText.append("text")
+    //                .attr("x", emptyBarRight + 5)
+    //                .attr("y", bottomPointY + 5)
+    //                .text("5 hours")
+    //                            //.attr("font-family", "neutra")
+    //                .attr("font-size", "20px")
+    //                .attr("fill", "#006600");
+
+    //var recommendLineText = svg.selectAll("text")
+    //                        .data(recommender)
+    //                        .enter();
+
+    emptyLineText.append("text")
+                    .attr("x", recommenderBarLeft - 15)
+                    .attr("y", recommenderHeight - 10)
+                    .text("fill up")
+                    .attr("fill", "#006600")
+                    .attr("font-size", "20px");
+
+    emptyLineText.append("text")
+                    .attr("x", recommenderBarLeft - 8)
+                    .attr("y", recommenderHeight + 19)
+                    .text("here")
+                    .attr("fill", "#006600")
+                    .attr("font-size", "20px");
+
+    //emptyLineText.append("text")
+    //                .attr("x", recommenderBarRight - 30)
+    //                .attr("y", recommenderHeight + 19)
+    //                .text("45 mins")
+    //                .attr("fill", "#006600")
+    //                .attr("font-size", "20px");
+
+
+
     var changeGauge = function(percent) {
         offset = height - padding * 2 - ((height - padding * 2) * percent / 100);
         leftPointY = padding + offset;
