@@ -1,4 +1,4 @@
-div(class='vroom-container')
+div(class='vroom-container', ng-click='listen()')
     //div(class='header')
     //    img(src='images/Fuel-256.png', class='fuel-icon')
     
@@ -13,7 +13,7 @@ div(class='vroom-container')
             img(src='', class='status')
 
     div(class='footer')
-        img(src='images/mic-white.png', class='mic-icon')
+        img(src='images/mic-green.png', class='mic-icon')
         h3(class='user-input')
 
 div(class='testing')
@@ -22,4 +22,4 @@ div(class='testing')
     //button(ng-click='refuel()') Refuel
     //button(ng-click='turnCarOff()') Stop Driving
     h1 {{receivedWords}}
-    button(ng-click='listen()') Speak
+    button(ng-click='listen()', type='submit') Speak

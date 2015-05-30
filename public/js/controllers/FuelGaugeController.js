@@ -16,9 +16,9 @@ var FuelGaugeController = function($scope, $location, $timeout) {
     var drain = function() {
         if(value === 0) {
             clearInterval(timer);
-        } else if(value <= recommendedRefuelValue) {
-            clearInterval(timer); 
-            timer = setInterval(drain, 250);
+        //} else if(value <= recommendedRefuelValue) {
+            //clearInterval(timer); 
+            //timer = setInterval(drain, 250);
         } else {
             value = firstGauge.getGaugeValue();
             value = value - 1;
@@ -28,8 +28,8 @@ var FuelGaugeController = function($scope, $location, $timeout) {
                 console.log("need to refuel noww!"); 
                 var status = document.getElementsByClassName("status")[0];
                 //document.getElementsByClassName("status")[0].src = "images/alert-icon.png";
-                status.src = "images/alert-icon.png";
-                $scope.fadeIcon();
+                status.src = "images/alert-icon_green.png";
+                //$scope.fadeIcon();
                 var h1 = document.createElement("h1");
                 var text = document.createTextNode("BEST TIME TO REFUEL");
                 h1.appendChild(text);
@@ -59,7 +59,9 @@ var FuelGaugeController = function($scope, $location, $timeout) {
             consuming = null;
         }
         consuming = true;
-        timer = setInterval(drain, 50);
+        timer = setInterval(drain, 1000);
+        //timer = setInterval(drain, 50);
+
     };
 
     $scope.burnRubber();
@@ -134,7 +136,7 @@ var FuelGaugeController = function($scope, $location, $timeout) {
         $scope.startFade = true;
         $timeout(function() {
             $scope.hidden = true;   
-        }, 1000); 
+        }, 10000); 
     };
 };
 
