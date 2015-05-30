@@ -1,4 +1,4 @@
-div(class='vroom-container')
+div(class='vroom-container', ng-click='listen()')
     div(class='select-fuel-header')
         h1(class='done') "DONE"
         h1 Choose fuel types to be recommended:
@@ -10,13 +10,17 @@ div(class='vroom-container')
         div(class='fuel-option')
             //- img(src='images/Charging-Station-256.png')
             span "DIESEL"
-        div(class='fuel-option')
+        //div(class='fuel-option')
             //- img(src='images/leaf-station-500.png')
-            span "ETHANOL"
+            //span "ETHANOL"
         div(class='fuel-option')
             //- img(src='images/leaf-station-500.png')
             span "PREMIUM"
 
     div(class='footer')
-        img(src='images/mic-white.png', class='mic-icon')
+        img(src='images/mic-green.png', class='mic-icon')
         h3(class='user-input')
+
+    div(class='testing')
+        h1 {{receivedWords}}
+        button(ng-click='listen()', type='submit') Speak

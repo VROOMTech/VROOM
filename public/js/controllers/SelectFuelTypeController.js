@@ -3,9 +3,10 @@ var app = angular.module('vroomApp');
 var SelectFuelTypeController = function($scope, $location) {
 
     var keywords = {"yes": true, 
-        "yeah": true, 
-        "sure": true, 
-        "yup": true};
+        "diesel": true, 
+        "unleaded": true, 
+        "premium": true,
+        "done": true};
 
     var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
     recognizer.continuous = true;
@@ -23,7 +24,7 @@ var SelectFuelTypeController = function($scope, $location) {
                     console.log(element + " was said"); 
                     // route to gas station list
                     $scope.$apply(function() {
-                        $location.path("/station-list");   
+                        $location.path("/fuel-gauge");   
                         recognizer.stop();
                     });
 
