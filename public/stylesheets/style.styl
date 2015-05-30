@@ -3,7 +3,10 @@
 global-reset()
 
 main-color = #96bf70
-background-color = #3f3f3f
+//background-color = #3f3f3f
+background-color = #ffffff
+//font-color = #96bf70
+font-color = #006600
 custom-font = neutra
 
 // custom font
@@ -20,7 +23,7 @@ custom-font = neutra
 body
     font-family custom-font, Helvetica, sans-serif
     background-color background-color
-    color #ffffff
+    color font-color
     text-align center
 
 .load-page
@@ -68,7 +71,7 @@ body
 
 .prompt-location
     font-size 36px
-    color main-color
+    color font-color
 
 .input-options
     font-size 36px
@@ -103,13 +106,13 @@ body
     width 100%
     margin-top 40px
     font-size 24px
-    color main-color
+    color font-color
 
 .gas-station-name
     font-size 36px
 
 .testing
-    margin-top 40px
+    margin-top 10px
 
 // Select Fuel Type View
 .select-fuel-header
@@ -129,6 +132,7 @@ body
     border-radius 20px
     background-color main-color
     vertical-align middle
+    color white
 
 .fuel-option > span 
     height 100%
@@ -152,3 +156,16 @@ body
 
 .default
     opacity 1
+
+.status-container
+    font-size 36px
+
+.chevron-image
+    width 10%
+
+.shell-image
+    width 10%
+
+input[type=submit]
+    width 50em
+    height 20em
