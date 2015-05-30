@@ -1,7 +1,7 @@
-div(class='vroom-container')
+div(class='vroom-container', ng-click='listen()')
     div(class='location-module')
         div(class='status-container')
-            img(src='images/location-pin-white.png', class='location-pin')
+            img(src='images/location-pin-green.png', class='location-pin')
 
     div(class='prompt-container')
         span(class='prompt-question') Are You Here?
@@ -11,9 +11,9 @@ div(class='vroom-container')
         span(class='input-options')"yes" | "no"
 
     div(class='footer')
-        img(src='images/mic-white.png', class='mic-icon')
+        img(src='images/mic-green.png', class='mic-icon')
         h3(class='user-input')
 
     div(class='testing')
         h1 {{receivedWords}}
-        button(ng-click='listen()') Speak
+        button(ng-click='listen()', type='submit') Speak
