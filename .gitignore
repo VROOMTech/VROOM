@@ -68,3 +68,4 @@ public/bower_components
 # css
 ######################
 *.css
+./public/stylesheets/style.css
