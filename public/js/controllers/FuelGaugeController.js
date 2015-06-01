@@ -31,7 +31,7 @@ var FuelGaugeController = function($scope, $location, $timeout) {
                 status.src = "images/alert-icon_green.png";
                 //$scope.fadeIcon();
                 var h1 = document.createElement("h1");
-                var text = document.createTextNode("BEST TIME TO REFUEL");
+                var text = document.createTextNode("find fuel");
                 h1.appendChild(text);
                 document.getElementsByClassName("status-container")[0].appendChild(h1);
             }
