@@ -42,7 +42,7 @@ function loadCarGauge(elementClass, value, config) {
     var emptyBarRight = width - width * 0.35;
     
     //empty bar path
-    var emptyLinePath = "M " + emptyBarLeft + " " + bottomPointY + " L " + emptyBarRight + " " + bottomPointY;
+    var emptyBarPath = "M " + emptyBarLeft + " " + bottomPointY + " L " + emptyBarRight + " " + bottomPointY;
 
     // create canvas
     var svg = d3.select("." + elementClass)
@@ -86,19 +86,19 @@ function loadCarGauge(elementClass, value, config) {
         .attr("opacity", ".8")
         .attr("clip-path", "url(#polygon-mask)");
 
-    // add empty line
-    var emptyLine = svg.append('svg:path')
-        .attr("d", emptyLinePath)
+    // add empty bar
+    var emptyBar = svg.append('svg:path')
+        .attr("d", emptyBarPath)
         .attr("stroke", "#006600")
         .attr("stroke-width", "3px");
 
     //////// fuel gauge text
-    var emptyLineText = svg.selectAll("text")
-                            .data(emptyLine)
+    var emptyBarText = svg.selectAll("text")
+                            .data(emptyBar)
                             .enter();
 
-    // empty line text "E"
-    emptyLineText.append("text")
+    // empty bar text "E"
+    emptyBarText.append("text")
                     .attr("x", emptyBarLeft - 15)
                     .attr("y", bottomPointY + 5)
                     .text("E")
