@@ -6,14 +6,12 @@ div(class='vroom-container', ng-click='listen()')
     div(class='prompt-container')
         span(class='prompt-question') Are You Here?
         br
-        span(class='prompt-location') University of Washington
+        span(class='prompt-location') 1410 ne campus parkway
+        br
+        span(class='prompt-location') seattle, wa 98195
         br
         span(class='input-options')"yes" | "no"
 
     div(class='footer')
         img(src='images/mic-green.png', class='mic-icon')
         h3(class='user-input')
-
-    div(class='testing')
-        h1 {{receivedWords}}
-        button(ng-click='listen()', type='submit') Speak
