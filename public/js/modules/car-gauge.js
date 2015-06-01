@@ -36,21 +36,12 @@ function loadCarGauge(elementClass, value, config) {
     // fuel gauge path
     var path = "M " + leftPointX + " " + leftPointY + " L " + bottomPointX + " " + bottomPointY + " L " + rightPointX + " " + rightPointY + " L " + leftPointX + " " + leftPointY; 
 
-
-    //////// recommender bar 
-    // height
-    var recommenderHeight = (height - padding * 2) * 0.75 + padding;
-    // x-axis points
-    var recommenderBarLeft = width * 0.1;
-    var recommenderBarRight = width - width * 0.1;
-
+    //////// empty bar path
+    // empty bar points
     var emptyBarLeft = width * 0.35;
     var emptyBarRight = width - width * 0.35;
     
-    // recommender path
-    var recommenderPath = "M " + recommenderBarLeft + " " + recommenderHeight + " L " + recommenderBarRight + " " + recommenderHeight;
-
-    //////// empty bar path
+    //empty bar path
     var emptyLinePath = "M " + emptyBarLeft + " " + bottomPointY + " L " + emptyBarRight + " " + bottomPointY;
 
     // create canvas
@@ -95,12 +86,6 @@ function loadCarGauge(elementClass, value, config) {
         .attr("opacity", ".8")
         .attr("clip-path", "url(#polygon-mask)");
 
-    // add recommender bar
-    var recommender = svg.append('svg:path')
-        .attr("d", recommenderPath)
-        .attr("stroke", "#006600")
-        .attr("stroke-width", "3px");
-
     // add empty line
     var emptyLine = svg.append('svg:path')
         .attr("d", emptyLinePath)
@@ -119,22 +104,6 @@ function loadCarGauge(elementClass, value, config) {
                     .text("E")
                     .attr("font-size", "20px")
                     .attr("fill", "#006600");
-
-    // recommender text "fill up"
-    emptyLineText.append("text")
-                    .attr("x", recommenderBarLeft - 15)
-                    .attr("y", recommenderHeight - 10)
-                    .text("fill up")
-                    .attr("fill", "#006600")
-                    .attr("font-size", "20px");
-
-    // recommender text "here"
-    emptyLineText.append("text")
-                    .attr("x", recommenderBarLeft - 8)
-                    .attr("y", recommenderHeight + 19)
-                    .text("here")
-                    .attr("fill", "#006600")
-                    .attr("font-size", "20px");
 
     var changeGauge = function(percent) {
         offset = height - padding * 2 - ((height - padding * 2) * percent / 100);
