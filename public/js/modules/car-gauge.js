@@ -75,7 +75,7 @@ function loadCarGauge(elementClass, value, config) {
     // add gauge outline
     svg.append('svg:path')
         .attr("d", path)
-        .attr("stroke", "white")
+        .attr("stroke", "#006600")
         .attr("fill", "none");
 
     // add gauge with fill
