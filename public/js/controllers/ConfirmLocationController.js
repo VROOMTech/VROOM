@@ -36,6 +36,36 @@ var ConfirmLocationController = function($scope, $location) {
         console.log('listening');
         recognizer.start();
     };
+
+    $scope.getUserLocation = function() {
+        var x = document.getElementsByClassName("footer")[0];
+
+        if(navigator.geolocation) {
+            console.log("geolocation available");
+            navigator.geolocation.getCurrentPosition(getAddress);
+        }else {
+            console.log('geolocation not available');
+        }
+
+        function getAddress(position) {
+            console.log('received lat long');
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude); // network pull
+            
+            console.log(latlng);
+
+            geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'latLng': latlng}, function(results, status) {
+                if(status == google.maps.GeocoderStatus.OK) {
+                    console.log('received some data');
+                    console.log(results[1].formatted_address);
+                }
+            });
+        };
+    };
+    $scope.getUserLocation();
 };
 
 app.controller("ConfirmLocationController", ConfirmLocationController);
