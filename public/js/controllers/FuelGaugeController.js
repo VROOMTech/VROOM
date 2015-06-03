@@ -23,10 +23,6 @@ var FuelGaugeController = function($scope, $location, $timeout) {
             if(!shouldRefuel && value <= recommendedRefuelValue) {
                 shouldRefuel = true;
                 console.log("need to refuel noww!"); 
-                //var status = document.getElementsByClassName("status")[0];
-                //document.getElementsByClassName("status")[0].src = "images/alert-icon.png";
-                //status.src = "images/alert-icon_green.png";
-                //$scope.fadeIcon();
                 var alertImage = new Image();
                 alertImage.src = 'images/alert-icon-green.png';
                 alertImage.className = "alert";
