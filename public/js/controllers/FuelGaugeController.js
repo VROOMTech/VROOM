@@ -16,9 +16,6 @@ var FuelGaugeController = function($scope, $location, $timeout) {
     var drain = function() {
         if(value === 0) {
             clearInterval(timer);
-        //} else if(value <= recommendedRefuelValue) {
-            //clearInterval(timer); 
-            //timer = setInterval(drain, 250);
         } else {
             value = firstGauge.getGaugeValue();
             value = value - 1;
@@ -26,10 +23,15 @@ var FuelGaugeController = function($scope, $location, $timeout) {
             if(!shouldRefuel && value <= recommendedRefuelValue) {
                 shouldRefuel = true;
                 console.log("need to refuel noww!"); 
-                var status = document.getElementsByClassName("status")[0];
+                //var status = document.getElementsByClassName("status")[0];
                 //document.getElementsByClassName("status")[0].src = "images/alert-icon.png";
-                status.src = "images/alert-icon_green.png";
+                //status.src = "images/alert-icon_green.png";
                 //$scope.fadeIcon();
+                var alertImage = new Image();
+                alertImage.src = 'images/alert-icon-green.png';
+                alertImage.className = "alert";
+                var statusContainer = document.getElementsByClassName("status-container")[0];
+                statusContainer.appendChild(alertImage);
                 var h1 = document.createElement("h1");
                 var text = document.createTextNode("find fuel");
                 h1.appendChild(text);
