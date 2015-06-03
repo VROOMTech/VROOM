@@ -39,10 +39,15 @@ var StationListController = function($scope, $location, myGasFeed, testGasFeed) 
                 if(keywords[ans]) {
                     console.log(ans + " was said"); 
                     
+                    var resultImage = new Image();
+                    resultImage.src = "images/check-symbol-green.png";
+                    resultImage.className = "selection";
                     if(chevronKey[ans]) {
-                        document.getElementsByClassName("chevron-image")[0].src = "images/check-symbol_green.png"; 
+                        var chevron = document.getElementsByClassName("chevron")[0];
+                        chevron.appendChild(resultImage);
                     } else {
-                        document.getElementsByClassName("shell-image")[0].src = "images/check-symbol_green.png";
+                        var shell = document.getElementsByClassName("shell")[0];
+                        shell.appendChild(resultImage);
                     }
                     // route to gas station list
                     //
@@ -147,8 +152,6 @@ var StationListController = function($scope, $location, myGasFeed, testGasFeed) 
     console.log(gasStationDataDistance.stations[2].station);
     console.log(gasStationDataDistance.stations[2].reg_price);
     console.log(gasStationDataDistance.stations[2].distance);
-
-
 
 };
 
