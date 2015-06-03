@@ -38,23 +38,23 @@ Due to the Web Speech API requiring permissions each time to use it, when run th
 
 In a terminal in the project directory, run:
 
-'''
+```
 openssl genrsa -out vroom-key.pem
-'''
+```
 
 Then run:
 
-'''
+```
 openssl req -new -key vroom-key.pem -out certrequest.csr
-'''
+```
 
 You will have to respond to prompts, which can be anything in the case of testing.
 
 Finally, run:
 
-'''
+```
 openssl x509 -req -days 9999 -in certrequest.csr -signkey vroom-key.pem -out vroom-cert.pem
-'''
+```
 
 Now the application should be able to run on https://localhost:8080
 
