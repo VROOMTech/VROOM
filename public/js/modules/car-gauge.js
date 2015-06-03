@@ -19,6 +19,7 @@ function loadCarGauge(elementClass, value, config) {
     var offset = 0;
     var gaugeValue = value;
     var padding = 20;
+    var maxValue = 100;
 
     //////// canvas dimensions
     width = document.getElementsByClassName(elementClass)[0].offsetWidth;
@@ -84,7 +85,7 @@ function loadCarGauge(elementClass, value, config) {
         .style("stop-color", "#006600");
 
     // add gauge outline
-    svg.append('svg:path')
+    var gaugeOutline = svg.append('svg:path')
         .attr("d", path)
         .attr("stroke", "#006600")
         .attr("fill", "none");
@@ -130,8 +131,6 @@ function loadCarGauge(elementClass, value, config) {
                     .attr("font-size", "20px")
                     .attr("fill", "#006600");
 
-    //emptyBarText.append()
-
     var changeGauge = function(percent) {
         offset = height - padding * 2 - ((height - padding * 2) * percent / 100);
         leftPointY = padding + offset;
@@ -148,12 +147,25 @@ function loadCarGauge(elementClass, value, config) {
          return "points", leftPointX + "," + rightPointY + " " + bottomPointX + "," + bottomPointY + " " + rightPointX + "," + rightPointY;
     };
 
+    var isAtWarningValue = function(value) {
+        console.log("value is: " + value);
+        if(value <= 1 / 3 * maxValue) {
+            console.log("WARNING!!!");
+        }
+        return value <= 1 / 3 * maxValue;
+    };
+
     return {
         updateGauge:  function(percent) {
             changeGauge(percent);
+            
+            if(isAtWarningValue(percent)) {
+                var stop = d3.select('#grad').selectAll('stops')[0].parentNode.firstChild.style.cssText = "stop-color: rgb(200, 0, 0);";
+            }
 
             gauge.attr("clip-path", "url(#polygon-mask)")
                 .attr("transform", null)
+                .attr("fill", "url(#grad)")
                 .transition()
                 .attr("transform", "translate(" + 0 + "," + 0 + ")");
 
