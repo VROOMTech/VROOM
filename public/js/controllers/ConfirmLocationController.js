@@ -1,6 +1,32 @@
 var app = angular.module('vroomApp');
 
 var ConfirmLocationController = function($scope, $location) {
+    $scope.address = "";
+
+    $scope.getUserLocation = function() {
+        var x = document.getElementsByClassName("footer")[0];
+
+        if(navigator.geolocation) {
+            console.log("geolocation available");
+            navigator.geolocation.getCurrentPosition(getAddress);
+        }else {
+            console.log('geolocation not available');
+        }
+
+        function getAddress(position) {
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude); // network pull
+            
+            geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'latLng': latlng}, function(results, status) {
+                if(status == google.maps.GeocoderStatus.OK) {
+                    $scope.address = results[1].formatted_address;
+                    $scope.$apply();
+                }
+            });
+        };
+    };
+    $scope.getUserLocation();
+    console.log($scope.address);
 
     var keywords = {"yes": true, 
         "yeah": true, 
@@ -37,35 +63,6 @@ var ConfirmLocationController = function($scope, $location) {
         recognizer.start();
     };
 
-    $scope.getUserLocation = function() {
-        var x = document.getElementsByClassName("footer")[0];
-
-        if(navigator.geolocation) {
-            console.log("geolocation available");
-            navigator.geolocation.getCurrentPosition(getAddress);
-        }else {
-            console.log('geolocation not available');
-        }
-
-        function getAddress(position) {
-            console.log('received lat long');
-            x.innerHTML = "Latitude: " + position.coords.latitude +
-                "<br>Longitude: " + position.coords.longitude;
-
-            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude); // network pull
-            
-            console.log(latlng);
-
-            geocoder = new google.maps.Geocoder();
-            geocoder.geocode({'latLng': latlng}, function(results, status) {
-                if(status == google.maps.GeocoderStatus.OK) {
-                    console.log('received some data');
-                    console.log(results[1].formatted_address);
-                }
-            });
-        };
-    };
-    $scope.getUserLocation();
 };
 
 app.controller("ConfirmLocationController", ConfirmLocationController);
