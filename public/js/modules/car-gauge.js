@@ -36,13 +36,24 @@ function loadCarGauge(elementClass, value, config) {
     // fuel gauge path
     var path = "M " + leftPointX + " " + leftPointY + " L " + bottomPointX + " " + bottomPointY + " L " + rightPointX + " " + rightPointY + " L " + leftPointX + " " + leftPointY; 
 
-    //////// empty bar path
+    //////// empty bar
     // empty bar points
     var emptyBarLeft = width * 0.35;
     var emptyBarRight = width - width * 0.35;
     
-    //empty bar path
+    // empty bar path
     var emptyBarPath = "M " + emptyBarLeft + " " + bottomPointY + " L " + emptyBarRight + " " + bottomPointY;
+
+    //////// third bar
+    // third bar points
+    var thirdBarLeft = width * 0.27;
+    var thirdBarRight = width * 0.33;
+
+    // third bar heigh
+    var thirdBarHeight = (bottomPointY - padding) * (2 / 3) + padding;
+
+    // third bar path 
+    var thirdBarPath = "M " + thirdBarLeft + " " + thirdBarHeight + " L " + thirdBarRight + " " + thirdBarHeight;
 
     // create canvas
     var svg = d3.select("." + elementClass)
@@ -92,6 +103,12 @@ function loadCarGauge(elementClass, value, config) {
         .attr("stroke", "#006600")
         .attr("stroke-width", "3px");
 
+    // add third bar
+    var thirdBar = svg.append('svg:path')
+        .attr("d", thirdBarPath)
+        .attr("stroke", "#006600")
+        .attr("stroke-width", "3px");
+
     //////// fuel gauge text
     var emptyBarText = svg.selectAll("text")
                             .data(emptyBar)
@@ -104,6 +121,16 @@ function loadCarGauge(elementClass, value, config) {
                     .text("E")
                     .attr("font-size", "20px")
                     .attr("fill", "#006600");
+
+    // third bar text "1/3"
+    emptyBarText.append("text")
+                    .attr("x", thirdBarLeft - 25)
+                    .attr("y", thirdBarHeight + 5)
+                    .text("1/3")
+                    .attr("font-size", "20px")
+                    .attr("fill", "#006600");
+
+    //emptyBarText.append()
 
     var changeGauge = function(percent) {
         offset = height - padding * 2 - ((height - padding * 2) * percent / 100);
@@ -131,6 +158,10 @@ function loadCarGauge(elementClass, value, config) {
                 .attr("transform", "translate(" + 0 + "," + 0 + ")");
 
             gaugeValue = percent;
+        },
+
+        changeGaugeColor: function() {
+            
         },
 
         getGaugeValue: function() {
