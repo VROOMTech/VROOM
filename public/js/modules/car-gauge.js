@@ -172,6 +172,14 @@ function loadCarGauge(elementClass, value, config) {
             gaugeValue = percent;
         },
 
+        isAtWarningValue: function(value) {
+            console.log("value is: " + value);
+            if(value <= 1 / 3 * maxValue) {
+                console.log("WARNING!!!");
+            }
+            return value <= 1 / 3 * maxValue;
+        },
+
         changeGaugeColor: function() {
             
         },

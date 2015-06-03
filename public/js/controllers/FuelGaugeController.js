@@ -3,7 +3,7 @@ var app = angular.module('vroomApp');
 var FuelGaugeController = function($scope, $location, $timeout) {
 
     // gauge value
-    var initial_value = 60;
+    var initial_value = 35;
     var firstGauge = loadCarGauge("test-gauge", initial_value, null); // jshint ignore:line
     firstGauge.updateGauge(initial_value);
     var recommendedRefuelValue = firstGauge.getRecommendedRefuelValue();
@@ -11,10 +11,11 @@ var FuelGaugeController = function($scope, $location, $timeout) {
     var value = 123;
     var timer = null;
     var shouldRefuel = false;
+    var showTraffic = false;
     var consuming = null;
 
     var drain = function() {
-        if(value === 0) {
+        if(value === 5) {
             clearInterval(timer);
         } else {
             value = firstGauge.getGaugeValue();
@@ -23,15 +24,38 @@ var FuelGaugeController = function($scope, $location, $timeout) {
             if(!shouldRefuel && value <= recommendedRefuelValue) {
                 shouldRefuel = true;
                 console.log("need to refuel noww!"); 
+                
                 var alertImage = new Image();
                 alertImage.src = 'images/alert-icon-green.png';
                 alertImage.className = "alert";
+
                 var statusContainer = document.getElementsByClassName("status-container")[0];
                 statusContainer.appendChild(alertImage);
+
                 var h1 = document.createElement("h1");
-                var text = document.createTextNode("find fuel");
+                var text = document.createTextNode('"find fuel"');
                 h1.appendChild(text);
                 document.getElementsByClassName("status-container")[0].appendChild(h1);
+
+            }else if (!showTraffic && firstGauge.isAtWarningValue(value)) {
+                console.log("in show warning statements");
+                showTraffic = true;
+                
+                var alertImage = new Image();
+                alertImage.src = 'images/alert-icon-green.png';
+                alertImage.className = "alert";
+
+                var statusContainer =  document.getElementsByClassName("status-container")[0];
+                statusContainer.appendChild(alertImage);
+
+                var h1 = document.createElement("h1");
+                var text = document.createTextNode("high traffic");
+                h1.appendChild(text);
+                document.getElementsByClassName("status-container")[0].appendChild(h1);
+
+                $timeout(function() {
+                    document.getElementsByClassName("status-container")[0].innerHTML = "";   
+                }, 5000); 
             }
         }
     };
