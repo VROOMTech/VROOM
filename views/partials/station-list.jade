@@ -3,19 +3,17 @@ div(class='gas-module', ng-click='listen()')
         div  Select A Gas Station
     div(class='right')
         div(class='gas-station chevron')
-            //img(src='images/ChevronFinal.png', class='gas-station')
-            //div $2.50/GAL   1.0 MI
             div 
-                span(class='gas-station-name') CHEVRON 
+                span(class='gas-station-name') 
+                    |   CHEVRON 
                 br 
                 |${{cheapestPrice}}/Gallon | {{cheapestDistance}}
             img(src='', class='chevron-image')
 
         div(class='gas-station shell')
-            //img(src='images/ShellFinal.png', class='gas-station')
-            //div $2.89/GAL .25 MI
             div 
-                span(class='gas-station-name') SHELL
+                span(class='gas-station-name')
+                    |   SHELL
                 br 
                 |${{closestPrice}}/Gallon | {{closestDistance}}
             img(src='', class='shell-image')
