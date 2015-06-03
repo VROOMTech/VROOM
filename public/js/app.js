@@ -13,10 +13,6 @@
                 templateUrl: 'partials/fuel-gauge',
                 controller: FuelGaugeController
             })
-            .when("/fuel-gauge-update", {
-                templateUrl: 'partials/fuel-gauge-update',
-                controller: FuelGaugeUpdateController
-            })
             .when("/confirm-location", {
                 templateUrl: 'partials/confirm-location',
                 controller: ConfirmLocationController
