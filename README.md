@@ -29,7 +29,33 @@ VROOM is partnering with [UW EcoCar](http://uwecocar.com/) to create a head-up-d
 * Amirah Majid: PhD Candidate, Information School, UW Seattle
 * Kristen Shinohara: PhD Candidate, Information School, UW Seattle
 
-####Testing Requirements
-Due to the Web Speech API requiring permissions each time to use it, when run through HTTP, the current application is run through HTTPS. Certs must be created locally to be able to test this application. Instructions to come.
+####Application Requirements
+This application will only work in the Chrome browser at the moment.
 
-last updated : 2.24.15
+####Testing Requirements
+NOTE: This is not for production
+Due to the Web Speech API requiring permissions each time to use it, when run through HTTP, the current application is run through HTTPS. Certs must be created locally to be able to test this application. To create local certs for testing this application, do the following:
+
+In a terminal in the project directory, run:
+
+'''
+openssl genrsa -out vroom-key.pem
+'''
+
+Then run:
+
+'''
+openssl req -new -key vroom-key.pem -out certrequest.csr
+'''
+
+You will have to respond to prompts, which can be anything in the case of testing.
+
+Finally, run:
+
+'''
+openssl x509 -req -days 9999 -in certrequest.csr -signkey vroom-key.pem -out vroom-cert.pem
+'''
+
+Now the application should be able to run on https://localhost:8080
+
+last updated : 6.2.15
