@@ -4,11 +4,14 @@ div(class='vroom-container', ng-click='listen()')
             img(src='images/location-pin-green.png', class='location-pin')
 
     div(class='prompt-container')
-        span(class='prompt-question') Are You Here?
+        span(class='prompt-question')
+            |Are You Here?
         br
-        span(class='prompt-location'){{address}}
+        span(class='prompt-location')
+            |{{address}}
         br
-        span(class='input-options')|"yes" | "no"
+        span(class='input-options')
+            |"yes" | "no"
 
     div(class='footer')
         img(src='images/mic-green.png', class='mic-icon')
