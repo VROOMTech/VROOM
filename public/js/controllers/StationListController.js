@@ -49,21 +49,16 @@ var StationListController = function($scope, $location, myGasFeed, testGasFeed) 
                         var shell = document.getElementsByClassName("shell")[0];
                         shell.appendChild(resultImage);
                     }
-                    // route to gas station list
+                    //
+                    //// route to gas station list
                     //
                     
                     setTimeout(function() {
                         $scope.$apply(function() {
                             recognizer.stop();
-                            $location.path("/fuel-gauge-update");     
+                            $location.path("/");     
                         }); 
                     }, 2000);
-
-                    //$scope.$apply(function() {
-                    //    $location.path("/fuel-gauge");   
-                    //    recognizer.stop();
-                    //});
-
                 }
             });
         }
@@ -74,46 +69,6 @@ var StationListController = function($scope, $location, myGasFeed, testGasFeed) 
         recognizer.start();
     };
 
-    var places = {};
-    var map;
-    var dataContainer = document.getElementsByClassName('places-test')[0];
-    var latitude = 47.6614244;
-    var longitude = -122.2683743;
-
-    places.initialize = function() {
-        var latlng = new google.maps.LatLng(latitude, longitude);
-        var myOptions = {
-            zoom: 14,
-            center: latlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementsByClassName('places-test')[0], myOptions);
-        places.placesRequest('Gas Stations', latlng, 29000, ['gas_station'], 'images/Oil-Green.png');
-
-    };
-
-    places.placesRequest = function(title, latlng, radius, types, icon) {
-        // request params
-        var request = {
-            location: latlng,
-            radius: radius,
-            types: types
-        };
-
-        // Make a service call to google
-        // TODO: need to change map to node
-        var callPlaces = new google.maps.places.PlacesService(map);
-        callPlaces.search(request, function(results, status) {
-            if(status == google.maps.places.PlacesServiceStatus.OK){
-                results.forEach(function(element) {
-                    console.log(element);
-                });  
-            }; 
-        });
-    };
-
-    //places.initialize();
-    
     //
     // My Gas Buddy
     //
