@@ -1,22 +1,17 @@
 div(class='gas-module', ng-click='listen()')
-    div(class='left')
-        div  Select A Gas Station
-    div(class='right')
-        div(class='gas-station chevron')
-            div 
-                span(class='gas-station-name') 
-                    |   CHEVRON 
-                br 
-                |${{cheapestPrice}}/Gallon | {{cheapestDistance}}
-            img(src='', class='chevron-image')
+    div(class='gas-station chevron')
+        div 
+            span(class='gas-station-name') 
+                |   CHEVRON 
+            br 
+            |${{cheapestPrice}}/Gallon | {{cheapestDistance}}
 
-        div(class='gas-station shell')
-            div 
-                span(class='gas-station-name')
-                    |   SHELL
-                br 
-                |${{closestPrice}}/Gallon | {{closestDistance}}
-            img(src='', class='shell-image')
+    div(class='gas-station shell')
+        div 
+            span(class='gas-station-name')
+                |   SHELL
+            br 
+            |${{closestPrice}}/Gallon | {{closestDistance}}
 
 div(class='footer')
     img(src='images/mic-green.png', class='mic-icon')
