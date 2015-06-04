@@ -37,6 +37,14 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
     var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
     recognizer.onstart = function() {
         $scope.isListening = true;
+        var foot = document.getElementsByClassName('footer')[0];
+        var h1 = document.createElement("span");
+        h1.className = 'speak-now';
+        var text = document.createTextNode("speak now");
+        h1.appendChild(text);
+        foot.appendChild(h1);
+
+
         $scope.shrinkMic();
         console.log('speech started');
     };
