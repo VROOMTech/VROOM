@@ -25,6 +25,10 @@
                 templateUrl: 'partials/select-fuel-type',
                 controller: SelectFuelTypeController
             })
+            .when("/wayfinding", {
+                templateUrl: 'partials/wayfinding',
+                controller: WayfindingController
+            })
             .otherwise({redirectTo: "/"}); 
     });
 
