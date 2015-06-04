@@ -79,7 +79,7 @@ var StationListController = function($scope, $location, $timeout, myGasFeed, tes
                     setTimeout(function() {
                         $scope.$apply(function() {
                             recognizer.stop();
-                            $location.path("/");     
+                            $location.path("/wayfinding");
                         }); 
                     }, 2000);
                 }
