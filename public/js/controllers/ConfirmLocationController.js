@@ -87,7 +87,6 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
     var micIsBig = micToggle ? "mic-icon big" : "mic-icon small";
 
     $scope.animateMic = function() {
-        //console.log('mic should be animated');
         micToggle = !micToggle;
         micIsBig = micToggle ? "mic-icon big" : "mic-icon small";
         var mic = document.getElementsByClassName('mic-icon')[0]; 
@@ -96,18 +95,15 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
 
     $scope.enlargeMic = function() {
         if($scope.isListening) {
-            console.log('enlarging');
             $scope.animateMic();
             $timeout(function() {
                 $scope.shrinkMic();
             }, 600); 
-
         } 
     };
 
     $scope.shrinkMic = function() {
         if($scope.isListening) {
-            console.log('shrinking');
             $scope.animateMic();
             $timeout(function() {
                 $scope.enlargeMic(); 
@@ -128,8 +124,6 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
     $scope.activate = function() {
         console.log('ACTIVATE!');
         console.log('update1');
-        //$scope.isListening = true;
-        //$scope.shrinkMic();
         $scope.listen();
     };
 
