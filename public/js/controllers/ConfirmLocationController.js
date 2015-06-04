@@ -52,6 +52,11 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
     recognizer.onend = function() {
         $scope.isListening = false;
         console.log('speech ended');
+        var footer = document.getElementsByClassName('footer')[0];
+        var speakLabel = document.getElementsByClassName('speak-now')[0];
+        console.log(speakLabel);
+        footer.removeChild(speakLabel);
+
     };
     recognizer.continuous = true;
     recognizer.interimResults = true;
