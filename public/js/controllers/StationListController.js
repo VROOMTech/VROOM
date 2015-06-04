@@ -1,6 +1,6 @@
 var app = angular.module('vroomApp');
 
-var StationListController = function($scope, $location, myGasFeed, testGasFeed) {
+var StationListController = function($scope, $location, $timeout, myGasFeed, testGasFeed) {
 
     var keywords = {"chevron": true, 
         "shell": true, 
@@ -24,6 +24,29 @@ var StationListController = function($scope, $location, myGasFeed, testGasFeed) 
         "nearest": true};
 
     var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
+    recognizer.onstart = function() {
+        $scope.isListening = true;
+        var foot = document.getElementsByClassName('footer')[0];
+        var h1 = document.createElement("span");
+        h1.className = 'speak-now';
+        var text = document.createTextNode("speak now");
+        h1.appendChild(text);
+        foot.appendChild(h1);
+
+
+        $scope.shrinkMic();
+        console.log('speech started');
+    };
+
+    recognizer.onend = function() {
+        $scope.isListening = false;
+        console.log('speech ended');
+        var footer = document.getElementsByClassName('footer')[0];
+        var speakLabel = document.getElementsByClassName('speak-now')[0];
+        console.log(speakLabel);
+        footer.removeChild(speakLabel);
+
+    };
     recognizer.continuous = true;
     recognizer.interimResults = true;
     recognizer.lang = "en";
@@ -64,7 +87,40 @@ var StationListController = function($scope, $location, myGasFeed, testGasFeed) 
         }
     };
 
+    var micToggle = true;
+    var micIsBig = micToggle ? "mic-icon big" : "mic-icon small";
+
+    $scope.animateMic = function() {
+        micToggle = !micToggle;
+        micIsBig = micToggle ? "mic-icon big" : "mic-icon small";
+        var mic = document.getElementsByClassName('mic-icon')[0]; 
+        mic.className = micIsBig;
+    };
+
+    $scope.enlargeMic = function() {
+        if($scope.isListening) {
+            $scope.animateMic();
+            $timeout(function() {
+                $scope.shrinkMic();
+            }, 600); 
+        } 
+    };
+
+    $scope.shrinkMic = function() {
+        if($scope.isListening) {
+            $scope.animateMic();
+            $timeout(function() {
+                $scope.enlargeMic(); 
+            }, 600); 
+
+        }
+    };
+
     $scope.listen = function() {
+        if($scope.isListening) {
+            $scope.isListening = false;
+            recognizer.stop();
+        }
         console.log('listening');
         recognizer.start();
     };
