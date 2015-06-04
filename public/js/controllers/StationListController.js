@@ -2,6 +2,8 @@ var app = angular.module('vroomApp');
 
 var StationListController = function($scope, $location, $timeout, myGasFeed, testGasFeed) {
 
+    $scope.hasResponse = false;
+
     var keywords = {"chevron": true, 
         "shell": true, 
         "cheap": true, 
@@ -55,12 +57,11 @@ var StationListController = function($scope, $location, $timeout, myGasFeed, tes
             var lastResultIndex = e.results.length - 1;
             var words = e.results[lastResultIndex][0].transcript.split(" ");
             $scope.receivedWords = words[words.length - 1];
-            console.log('words is: ' + words);
             words.forEach(function(element) {
                 var ans = element.toLowerCase();
                 console.log(ans + ' in keywords is ' + keywords[element]);
-                if(keywords[ans]) {
-                    console.log(ans + " was said"); 
+                if(keywords[ans] && !$scope.hasResponse) {
+                    $scope.hasResponse = true;
                     
                     var resultImage = new Image();
                     resultImage.src = "images/check-symbol-green.png";
