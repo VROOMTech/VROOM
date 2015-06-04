@@ -1,7 +1,8 @@
 var app = angular.module('vroomApp');
 
-var ConfirmLocationController = function($scope, $location) {
+var ConfirmLocationController = function($scope, $location, $timeout) {
     $scope.address = "";
+    $scope.isListening = false;
 
     $scope.getUserLocation = function() {
         var x = document.getElementsByClassName("footer")[0];
@@ -58,9 +59,49 @@ var ConfirmLocationController = function($scope, $location) {
         }
     };
 
+    var micToggle = true;
+    var micIsBig = micToggle ? "mic-icon big" : "mic-icon small";
+
+    $scope.animateMic = function() {
+        //console.log('mic should be animated');
+        micToggle = !micToggle;
+        micIsBig = micToggle ? "mic-icon big" : "mic-icon small";
+        var mic = document.getElementsByClassName('mic-icon')[0]; 
+        mic.className = micIsBig;
+    };
+
+    $scope.enlargeMic = function() {
+        if($scope.isListening) {
+            console.log('enlarging');
+            $scope.animateMic();
+            $timeout(function() {
+                $scope.shrinkMic();
+            }, 2500); 
+
+        } 
+    };
+
+    $scope.shrinkMic = function() {
+        if($scope.isListening) {
+            console.log('shrinking');
+            $scope.animateMic();
+            $timeout(function() {
+                $scope.enlargeMic(); 
+            }, 2500); 
+
+        }
+    };
+
     $scope.listen = function() {
         console.log('listening');
         recognizer.start();
+    };
+
+    $scope.activate = function() {
+        console.log('ACTIVATE!');
+        $scope.isListening = true;
+        $scope.shrinkMic();
+        $scope.listen();
     };
 
 };
