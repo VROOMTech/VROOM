@@ -13,6 +13,7 @@ var FuelGaugeController = function($scope, $location, $timeout) {
     var shouldRefuel = false;
     var showTraffic = false;
     var consuming = null;
+    var showDismiss = false;
 
     var drain = function() {
         if(value === 5) {
@@ -36,6 +37,12 @@ var FuelGaugeController = function($scope, $location, $timeout) {
                 var text = document.createTextNode('"find fuel"');
                 h1.appendChild(text);
                 document.getElementsByClassName("status-container")[0].appendChild(h1);
+
+                var dismiss = document.createElement("h1");
+                dismiss.className = "dismiss-text";
+                var dismissText = document.createTextNode('"dismiss"');
+                dismiss.appendChild(dismissText);
+                document.getElementsByClassName("status-container")[0].appendChild(dismiss);
 
             }else if (!showTraffic && firstGauge.isAtWarningValue(value)) {
                 console.log("in show warning statements");
@@ -122,7 +129,8 @@ var FuelGaugeController = function($scope, $location, $timeout) {
         "jewel": true, 
         "station": true, 
         "bump": true, 
-        "you'll": true};
+        "you'll": true,
+        "dismiss": true};
 
     var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
     recognizer.continuous = true;
