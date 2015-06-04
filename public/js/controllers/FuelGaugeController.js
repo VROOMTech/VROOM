@@ -58,7 +58,7 @@ var FuelGaugeController = function($scope, $location, $timeout) {
                 var h1 = document.createElement("h1");
                 var text = document.createTextNode("high traffic");
                 h1.appendChild(text);
-                document.getElementsByClassName("status-container")[0].appendChild(h1);
+                statusContainer.appendChild(h1);
 
                 $timeout(function() {
                     document.getElementsByClassName("status-container")[0].innerHTML = "";   
