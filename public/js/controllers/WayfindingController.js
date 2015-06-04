@@ -6,7 +6,7 @@ var WayfindingController = function($scope, $interval, $location) {
     secondGauge.updateGauge(initial_value);
 
     var alertImage = new Image();
-    alertImage.src = 'images/alert-icon-green.png';
+    alertImage.src = 'images/right-arrow.png';
     alertImage.className = "alert";
 
     var statusContainer =  document.getElementsByClassName("status-container")[0];
