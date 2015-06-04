@@ -146,12 +146,16 @@ var FuelGaugeController = function($scope, $location, $timeout) {
                 console.log(element + ' in keywords is ' + keywords[element]);
                 if(keywords[element]) {
                     console.log(element + " was said"); 
-                    // route to gas station list
-                    $scope.$apply(function() {
-                        $location.path("/station-list");   
-                        recognizer.stop();
-                    });
-
+                    if(element === 'dismiss') {
+                        document.getElementsByClassName('status-container')[0].innerHTML = "";
+                    }else {
+                        // route to gas station list
+                        $scope.$apply(function() {
+                            $location.path("/station-list");   
+                            recognizer.stop();
+                        });
+                    }
+                    
                 }
             });
         }
