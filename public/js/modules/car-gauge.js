@@ -160,7 +160,12 @@ function loadCarGauge(elementClass, value, config) {
             changeGauge(percent);
             
             if(isAtWarningValue(percent)) {
-                var stop = d3.select('#grad').selectAll('stops')[0].parentNode.firstChild.style.cssText = "stop-color: rgb(200, 0, 0);";
+                var stop = d3.select('#grad')
+                    .selectAll('stops')[0]
+                    .parentNode
+                    .firstChild
+                    .style
+                    .cssText = "stop-color: rgb(200, 0, 0);";
             }
 
             gauge.attr("clip-path", "url(#polygon-mask)")
