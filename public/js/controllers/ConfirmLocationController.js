@@ -35,6 +35,16 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
         "yup": true};
 
     var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
+    recognizer.onstart = function() {
+        $scope.isListening = true;
+        $scope.shrinkMic();
+        console.log('speech started');
+    };
+
+    recognizer.onend = function() {
+        $scope.isListening = false;
+        console.log('speech ended');
+    };
     recognizer.continuous = true;
     recognizer.interimResults = true;
     recognizer.lang = "en";
@@ -50,8 +60,9 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
                     console.log(element + " was said"); 
                     // route to gas station list
                     $scope.$apply(function() {
-                        $location.path("/select-fuel-type");   
                         recognizer.stop();
+                        $location.path("/select-fuel-type");   
+                        //recognizer.stop();
                     });
 
                 }
@@ -76,7 +87,7 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
             $scope.animateMic();
             $timeout(function() {
                 $scope.shrinkMic();
-            }, 2500); 
+            }, 600); 
 
         } 
     };
@@ -87,20 +98,25 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
             $scope.animateMic();
             $timeout(function() {
                 $scope.enlargeMic(); 
-            }, 2500); 
+            }, 600); 
 
         }
     };
 
     $scope.listen = function() {
+        if($scope.isListening) {
+            $scope.isListening = false;
+            recognizer.stop();
+        }
         console.log('listening');
         recognizer.start();
     };
 
     $scope.activate = function() {
         console.log('ACTIVATE!');
-        $scope.isListening = true;
-        $scope.shrinkMic();
+        console.log('update1');
+        //$scope.isListening = true;
+        //$scope.shrinkMic();
         $scope.listen();
     };
 
