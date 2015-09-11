@@ -13,9 +13,9 @@ function loadCarGauge(elementClass, value, config) {
     if (config === null) {
         config = carGaugeDefaultSettings();
     }
-    
-    var width = 1; 
-    var height = 1; 
+
+    var width = 1;
+    var height = 1;
     var offset = 0;
     var gaugeValue = value;
     var padding = 20;
@@ -33,7 +33,7 @@ function loadCarGauge(elementClass, value, config) {
     var rightPointY = padding;
     var bottomPointX = width / 2;
     var bottomPointY = height - padding;
-    
+
     // fuel gauge path
     var path = "M " + leftPointX + " " + leftPointY + " L " + bottomPointX + " " + bottomPointY + " L " + rightPointX + " " + rightPointY + " L " + leftPointX + " " + leftPointY; 
 
@@ -41,7 +41,7 @@ function loadCarGauge(elementClass, value, config) {
     // empty bar points
     var emptyBarLeft = width * 0.35;
     var emptyBarRight = width - width * 0.35;
-    
+
     // empty bar path
     var emptyBarPath = "M " + emptyBarLeft + " " + bottomPointY + " L " + emptyBarRight + " " + bottomPointY;
 
@@ -53,7 +53,7 @@ function loadCarGauge(elementClass, value, config) {
     // third bar heigh
     var thirdBarHeight = (bottomPointY - padding) * (2 / 3) + padding;
 
-    // third bar path 
+    // third bar path
     var thirdBarPath = "M " + thirdBarLeft + " " + thirdBarHeight + " L " + thirdBarRight + " " + thirdBarHeight;
 
     // create canvas
@@ -62,7 +62,7 @@ function loadCarGauge(elementClass, value, config) {
         .attr('width', width)
         .attr('height', height);
 
-    // create gradient 
+    // create gradient
     var grad = svg.append("defs")
         .append("linearGradient")
         .attr({
@@ -136,7 +136,7 @@ function loadCarGauge(elementClass, value, config) {
         leftPointY = padding + offset;
         rightPointY = padding + offset;
         path = getNewPath();
-        polygon.attr("points", updatePolygon()); 
+        polygon.attr("points", updatePolygon());
     };
 
     var getNewPath = function() {
@@ -158,7 +158,7 @@ function loadCarGauge(elementClass, value, config) {
     return {
         updateGauge:  function(percent) {
             changeGauge(percent);
-            
+
             if(isAtWarningValue(percent)) {
                 var stop = d3.select('#grad')
                     .selectAll('stops')[0]
@@ -186,7 +186,7 @@ function loadCarGauge(elementClass, value, config) {
         },
 
         changeGaugeColor: function() {
-            
+
         },
 
         getGaugeValue: function() {
