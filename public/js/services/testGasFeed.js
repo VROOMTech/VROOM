@@ -1,4 +1,5 @@
 (function() {
+    'use strict';
     var testGasFeed = function() {
 
         var getNearbyGasStationsByPrice = function() {
@@ -17,4 +18,4 @@
 
     var module = angular.module("vroomApp");
     module.factory("testGasFeed", testGasFeed);
-}());
+})();

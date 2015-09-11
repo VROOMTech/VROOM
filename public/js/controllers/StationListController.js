@@ -5,11 +5,17 @@ var dependencies = [
     '$location',
     '$scope',
     '$timeout',
-    'myGasFeed',
+    //'myGasFeed',
     'testGasFeed'
 ];
 
-function StationListController($location, $scope, $timeout, myGasFeed, testGasFeed) {
+function StationListController(
+    $location,
+    $scope,
+    $timeout,
+    //myGasFeed,
+    testGasFeed
+) {
     $scope.hasResponse = false;
 
     var keywords = {"chevron": true,
