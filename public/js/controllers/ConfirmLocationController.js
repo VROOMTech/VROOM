@@ -1,6 +1,13 @@
+'use strict';
 var app = angular.module('vroomApp');
 
-var ConfirmLocationController = function($scope, $location, $timeout) {
+var dependencies = [
+    '$location',
+    '$scope',
+    '$timeout'
+];
+
+function ConfirmLocationController($location, $scope, $timeout) {
     $scope.address = "";
     $scope.isListening = false;
 
@@ -8,15 +15,14 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
         var x = document.getElementsByClassName("footer")[0];
 
         if(navigator.geolocation) {
-            console.log("geolocation available");
             navigator.geolocation.getCurrentPosition(getAddress);
         }else {
-            console.log('geolocation not available');
+            console.error('geolocation not available');
         }
 
         function getAddress(position) {
             var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude); // network pull
-            
+
             geocoder = new google.maps.Geocoder();
             geocoder.geocode({'latLng': latlng}, function(results, status) {
                 if(status == google.maps.GeocoderStatus.OK) {
@@ -27,11 +33,10 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
         };
     };
     $scope.getUserLocation();
-    console.log($scope.address);
 
-    var keywords = {"yes": true, 
-        "yeah": true, 
-        "sure": true, 
+    var keywords = {"yes": true,
+        "yeah": true,
+        "sure": true,
         "yup": true};
 
     var recognizer = new webkitSpeechRecognition(); // jshint ignore:line
@@ -70,12 +75,11 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
             words.forEach(function(element) {
                 console.log(element + ' in keywords is ' + keywords[element]);
                 if(keywords[element]) {
-                    console.log(element + " was said"); 
+                    console.log(element + " was said");
                     // route to gas station list
                     $scope.$apply(function() {
                         recognizer.stop();
-                        $location.path("/select-fuel-type");   
-                        //recognizer.stop();
+                        $location.path("/select-fuel-type");
                     });
 
                 }
@@ -89,7 +93,7 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
     $scope.animateMic = function() {
         micToggle = !micToggle;
         micIsBig = micToggle ? "mic-icon big" : "mic-icon small";
-        var mic = document.getElementsByClassName('mic-icon')[0]; 
+        var mic = document.getElementsByClassName('mic-icon')[0];
         mic.className = micIsBig;
     };
 
@@ -98,16 +102,16 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
             $scope.animateMic();
             $timeout(function() {
                 $scope.shrinkMic();
-            }, 600); 
-        } 
+            }, 600);
+        }
     };
 
     $scope.shrinkMic = function() {
         if($scope.isListening) {
             $scope.animateMic();
             $timeout(function() {
-                $scope.enlargeMic(); 
-            }, 600); 
+                $scope.enlargeMic();
+            }, 600);
 
         }
     };
@@ -117,16 +121,15 @@ var ConfirmLocationController = function($scope, $location, $timeout) {
             $scope.isListening = false;
             recognizer.stop();
         }
-        console.log('listening');
         recognizer.start();
     };
 
     $scope.activate = function() {
-        console.log('ACTIVATE!');
-        console.log('update1');
         $scope.listen();
     };
 
 };
+
+ConfirmLocationController.$inject = dependencies;
 
 app.controller("ConfirmLocationController", ConfirmLocationController);

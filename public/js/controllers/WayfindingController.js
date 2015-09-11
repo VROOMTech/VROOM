@@ -1,6 +1,13 @@
+'use strict';
 var app = angular.module('vroomApp');
 
-var WayfindingController = function($scope, $interval, $location) {
+var dependencies = [
+    '$interval',
+    '$location',
+    '$scope'
+];
+
+function WayfindingController($interval, $location, $scope) {
     var initial_value = 15;
     var secondGauge = loadCarGauge("test-gauge", initial_value, null); // jshint ignore:line
     secondGauge.updateGauge(initial_value);
@@ -18,13 +25,13 @@ var WayfindingController = function($scope, $interval, $location) {
         if($scope.countdown < 1) {
             $scope.start();
         }
-    };   
+    };
 
     var countdownInterval = null;
     var startCountdown = function() {
         countdownInterval = $interval(decrementCountdown, 1000, $scope.countdown);
     };
-        
+
     $scope.start = function() {
         if(countdownInterval) {
             $interval.cancel(countdownInterval);
@@ -36,5 +43,7 @@ var WayfindingController = function($scope, $interval, $location) {
     $scope.countdown = 15;
     startCountdown();
 };
+
+WayfindingController.$inject = dependencies;
 
 app.controller("WayfindingController", WayfindingController);

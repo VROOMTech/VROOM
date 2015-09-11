@@ -1,6 +1,13 @@
+'use strict';
 var app = angular.module('vroomApp');
 
-var FuelGaugeController = function($scope, $location, $timeout) {
+var dependencies = [
+    '$location',
+    '$scope',
+    '$timeout'
+];
+
+function FuelGaugeController($location, $scope, $timeout) {
 
     $scope.showingTrafficAlert = false;
     $scope.showingGetFuel = false;
@@ -245,5 +252,7 @@ var FuelGaugeController = function($scope, $location, $timeout) {
         }, 10000);
     };
 };
+
+FuelGaugeController.$inject = dependencies;
 
 app.controller("FuelGaugeController", FuelGaugeController);

@@ -29,7 +29,7 @@
                 templateUrl: 'partials/wayfinding',
                 controller: WayfindingController
             })
-            .otherwise({redirectTo: "/"}); 
+            .otherwise({redirectTo: "/"});
     });
 
 }());

@@ -1,10 +1,16 @@
+'use strict';
 var app = angular.module('vroomApp');
 
-var SelectFuelTypeController = function($scope, $location, $timeout) {
+var dependencies = [
+    '$location',
+    '$scope',
+    '$timeout'
+];
 
-    var keywords = {"yes": true, 
-        "diesel": true, 
-        "unleaded": true, 
+function SelectFuelTypeController($scope, $location, $timeout) {
+    var keywords = {"yes": true,
+        "diesel": true,
+        "unleaded": true,
         "premium": true,
         "done": true};
 
@@ -44,10 +50,10 @@ var SelectFuelTypeController = function($scope, $location, $timeout) {
             words.forEach(function(element) {
                 console.log(element + ' in keywords is ' + keywords[element]);
                 if(keywords[element]) {
-                    console.log(element + " was said"); 
+                    console.log(element + " was said");
                     // route to gas station list
                     $scope.$apply(function() {
-                        $location.path("/fuel-gauge");   
+                        $location.path("/fuel-gauge");
                         recognizer.stop();
                     });
 
@@ -100,5 +106,7 @@ var SelectFuelTypeController = function($scope, $location, $timeout) {
         $scope.listen();
     };
 };
+
+SelectFuelTypeController.$inject = dependencies;
 
 app.controller("SelectFuelTypeController", SelectFuelTypeController);

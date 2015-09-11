@@ -1,16 +1,24 @@
+'use strict';
 var app = angular.module('vroomApp');
 
-var StationListController = function($scope, $location, $timeout, myGasFeed, testGasFeed) {
+var dependencies = [
+    '$location',
+    '$scope',
+    '$timeout',
+    'myGasFeed',
+    'testGasFeed'
+];
 
+function StationListController($location, $scope, $timeout, myGasFeed, testGasFeed) {
     $scope.hasResponse = false;
 
-    var keywords = {"chevron": true, 
-        "shell": true, 
-        "cheap": true, 
-        "cheapest": true, 
-        "close": true, 
-        "closest": true, 
-        "near": true, 
+    var keywords = {"chevron": true,
+        "shell": true,
+        "cheap": true,
+        "cheapest": true,
+        "close": true,
+        "closest": true,
+        "near": true,
         "nearest": true};
 
 
@@ -62,7 +70,7 @@ var StationListController = function($scope, $location, $timeout, myGasFeed, tes
                 console.log(ans + ' in keywords is ' + keywords[element]);
                 if(keywords[ans] && !$scope.hasResponse) {
                     $scope.hasResponse = true;
-                    
+
                     var resultImage = new Image();
                     resultImage.src = "images/check-symbol-green.png";
                     resultImage.className = "selection";
@@ -81,7 +89,7 @@ var StationListController = function($scope, $location, $timeout, myGasFeed, tes
                         $scope.$apply(function() {
                             recognizer.stop();
                             $location.path("/wayfinding");
-                        }); 
+                        });
                     }, 2000);
                 }
             });
@@ -94,7 +102,7 @@ var StationListController = function($scope, $location, $timeout, myGasFeed, tes
     $scope.animateMic = function() {
         micToggle = !micToggle;
         micIsBig = micToggle ? "mic-icon big" : "mic-icon small";
-        var mic = document.getElementsByClassName('mic-icon')[0]; 
+        var mic = document.getElementsByClassName('mic-icon')[0];
         mic.className = micIsBig;
     };
 
@@ -103,16 +111,16 @@ var StationListController = function($scope, $location, $timeout, myGasFeed, tes
             $scope.animateMic();
             $timeout(function() {
                 $scope.shrinkMic();
-            }, 600); 
-        } 
+            }, 600);
+        }
     };
 
     $scope.shrinkMic = function() {
         if($scope.isListening) {
             $scope.animateMic();
             $timeout(function() {
-                $scope.enlargeMic(); 
-            }, 600); 
+                $scope.enlargeMic();
+            }, 600);
 
         }
     };
@@ -129,13 +137,13 @@ var StationListController = function($scope, $location, $timeout, myGasFeed, tes
     //
     // My Gas Buddy
     //
-    
+
     var onGetNearbyGasStationsComplete = function(data) {
         $scope.gasStations = data;
         data.forEach(function(element){
             console.log(element);
-        }); 
-    };  
+        });
+    };
 
     var onError = function(reason) {
         $scope.error = "Could not fetch gas stations";
@@ -147,7 +155,6 @@ var StationListController = function($scope, $location, $timeout, myGasFeed, tes
     var gasStationDataPrice = testGasFeed.getNearbyGasStationsByPrice();
     var gasStationDataDistance = testGasFeed.getNearbyGasStationsByDistance();
     //gasStationData.stations.forEach(function(station) {
-    //    console.log(station);
     //});
     //
 
@@ -166,5 +173,7 @@ var StationListController = function($scope, $location, $timeout, myGasFeed, tes
     console.log(gasStationDataDistance.stations[2].distance);
 
 };
+
+StationListController.$inject = dependencies;
 
 app.controller("StationListController", StationListController);
