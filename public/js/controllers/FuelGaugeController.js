@@ -2,8 +2,11 @@ var app = angular.module('vroomApp');
 
 var FuelGaugeController = function($scope, $location, $timeout) {
 
+    $scope.showingTrafficAlert = false;
+    $scope.showingGetFuel = false;
+
     // gauge value
-    var initial_value = 35;
+    var initial_value = 60;
     var firstGauge = loadCarGauge("test-gauge", initial_value, null); // jshint ignore:line
     firstGauge.updateGauge(initial_value);
     var recommendedRefuelValue = firstGauge.getRecommendedRefuelValue();
@@ -24,30 +27,33 @@ var FuelGaugeController = function($scope, $location, $timeout) {
             firstGauge.updateGauge(value);
             if(!shouldRefuel && value <= recommendedRefuelValue) {
                 shouldRefuel = true;
-                console.log("need to refuel noww!"); 
-                
+                console.log("need to refuel noww!");
+
                 var alertImage = new Image();
                 alertImage.src = 'images/alert-icon-green.png';
                 alertImage.className = "alert";
 
                 var statusContainer = document.getElementsByClassName("status-container")[0];
-                statusContainer.appendChild(alertImage);
 
                 var h1 = document.createElement("h1");
                 var text = document.createTextNode('"find fuel"');
                 h1.appendChild(text);
-                document.getElementsByClassName("status-container")[0].appendChild(h1);
 
                 var dismiss = document.createElement("h1");
                 dismiss.className = "dismiss-text";
                 var dismissText = document.createTextNode('"dismiss"');
                 dismiss.appendChild(dismissText);
-                document.getElementsByClassName("status-container")[0].appendChild(dismiss);
+
+                if(!$scope.showingGetFuel) {
+                    statusContainer.appendChild(alertImage);
+                    statusContainer.appendChild(h1);
+                    statusContainer.appendChild(dismiss);
+                }
 
             }else if (!showTraffic && firstGauge.isAtWarningValue(value)) {
                 console.log("in show warning statements");
                 showTraffic = true;
-                
+
                 var alertImage = new Image();
                 alertImage.src = 'images/alert-icon-green.png';
                 alertImage.className = "alert";
@@ -58,11 +64,15 @@ var FuelGaugeController = function($scope, $location, $timeout) {
                 var h1 = document.createElement("h1");
                 var text = document.createTextNode("high traffic");
                 h1.appendChild(text);
-                statusContainer.appendChild(h1);
+                if(!$scope.showingTrafficAlert) {
+                    $scope.showingTrafficAlert = true;
+                    statusContainer.appendChild(h1);
+                }
 
                 $timeout(function() {
-                    document.getElementsByClassName("status-container")[0].innerHTML = "";   
-                }, 5000); 
+                    document.getElementsByClassName("status-container")[0].innerHTML = "";
+                    $scope.showingTrafficAlert = false;
+                }, 5000);
             }
         }
     };
@@ -107,28 +117,28 @@ var FuelGaugeController = function($scope, $location, $timeout) {
 
     $scope.turnCarOff = function() {
         if(timer) {
-           clearInterval(timer); 
+           clearInterval(timer);
            timer = null;
         }
     };
 
-    var keywords = {"gas": true, 
-        "fuel": true, 
-        "where": true, 
-        "gage": true, 
-        "gauge": true, 
-        "near": true, 
-        "nearest": true, 
-        "find": true, 
-        "around": true, 
-        "locate": true, 
-        "refuel": true, 
-        "pump": true, 
-        "refill": true, 
-        "tank": true, 
-        "jewel": true, 
-        "station": true, 
-        "bump": true, 
+    var keywords = {"gas": true,
+        "fuel": true,
+        "where": true,
+        "gage": true,
+        "gauge": true,
+        "near": true,
+        "nearest": true,
+        "find": true,
+        "around": true,
+        "locate": true,
+        "refuel": true,
+        "pump": true,
+        "refill": true,
+        "tank": true,
+        "jewel": true,
+        "station": true,
+        "bump": true,
         "you'll": true,
         "dismiss": true};
 
@@ -168,17 +178,17 @@ var FuelGaugeController = function($scope, $location, $timeout) {
             words.forEach(function(element) {
                 console.log(element + ' in keywords is ' + keywords[element]);
                 if(keywords[element]) {
-                    console.log(element + " was said"); 
+                    console.log(element + " was said");
                     if(element === 'dismiss') {
                         document.getElementsByClassName('status-container')[0].innerHTML = "";
                     }else {
                         // route to gas station list
                         $scope.$apply(function() {
-                            $location.path("/station-list");   
+                            $location.path("/station-list");
                             recognizer.stop();
                         });
                     }
-                    
+
                 }
             });
         }
@@ -190,7 +200,7 @@ var FuelGaugeController = function($scope, $location, $timeout) {
     $scope.animateMic = function() {
         micToggle = !micToggle;
         micIsBig = micToggle ? "mic-icon big" : "mic-icon small";
-        var mic = document.getElementsByClassName('mic-icon')[0]; 
+        var mic = document.getElementsByClassName('mic-icon')[0];
         mic.className = micIsBig;
     };
 
@@ -199,16 +209,16 @@ var FuelGaugeController = function($scope, $location, $timeout) {
             $scope.animateMic();
             $timeout(function() {
                 $scope.shrinkMic();
-            }, 600); 
-        } 
+            }, 600);
+        }
     };
 
     $scope.shrinkMic = function() {
         if($scope.isListening) {
             $scope.animateMic();
             $timeout(function() {
-                $scope.enlargeMic(); 
-            }, 600); 
+                $scope.enlargeMic();
+            }, 600);
 
         }
     };
@@ -231,8 +241,8 @@ var FuelGaugeController = function($scope, $location, $timeout) {
     $scope.fadeIcon = function() {
         $scope.startFade = true;
         $timeout(function() {
-            $scope.hidden = true;   
-        }, 10000); 
+            $scope.hidden = true;
+        }, 10000);
     };
 };
 

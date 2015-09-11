@@ -1,7 +1,7 @@
 var app = angular.module('vroomApp');
 
 var WayfindingController = function($scope, $interval, $location) {
-    var initial_value = 35;
+    var initial_value = 15;
     var secondGauge = loadCarGauge("test-gauge", initial_value, null); // jshint ignore:line
     secondGauge.updateGauge(initial_value);
 
