@@ -14,9 +14,9 @@ html(ng-app='vroomApp')
         script(src='js/controllers/StationListController.js')
         script(src='js/controllers/SelectFuelTypeController.js')
         script(src='js/controllers/WayfindingController.js')
-        script(src='js/modules/car-gauge.js')
-        script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?.exp&signed_in=true')  
-        script(src='js/modules/myGasFeed.js') // myGasFeed can't GET via HTTPS
-        script(src='js/modules/testGasFeed.js') // for testing
+        script(src='js/services/car-gauge.js')
+        script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?.exp&signed_in=true')
+        script(src='js/services/myGasFeed.js') // myGasFeed can't GET via HTTPS
+        script(src='js/services/testGasFeed.js') // for testing
     body
         block body
